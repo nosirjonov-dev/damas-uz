@@ -3,6 +3,7 @@ package com.example.damasuz.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.damasuz.databinding.ItemLiniyaBinding
 import com.example.damasuz.models.Liniya
 import com.example.damasuz.models.SHopir
 

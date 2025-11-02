@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/my_navigation">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_navigation"
+    app:startDestination="@id/signFragment">
 
+    <fragment
+        android:id="@+id/signFragment"
+        android:name="com.example.damasuz.fragments.SignFragment"
+        android:label="fragment_sign"
+        tools:layout="@layout/fragment_sign" />
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.example.damasuz.fragments.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
+    <fragment
+        android:id="@+id/registerYolocvhiFragment"
+        android:name="com.example.damasuz.fragments.RegisterYolocvhiFragment"
+        android:label="fragment_register_yolocvhi"
+        tools:layout="@layout/fragment_register_yolocvhi" />
+    <fragment
+        android:id="@+id/registerShopirFragment"
+        android:name="com.example.damasuz.fragments.RegisterShopirFragment"
+        android:label="fragment_register_shopir"
+        tools:layout="@layout/fragment_register_shopir" />
 </navigation>
