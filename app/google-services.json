@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "551248859239",
+    "project_id": "damas-uz",
+    "storage_bucket": "damas-uz.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:551248859239:android:09eecf668e1dbfe4a644c2",
+        "android_client_info": {
+          "package_name": "com.example.damasuz"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHci1aCn85DWa-5PtPJEymFU84JIxpCgw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
