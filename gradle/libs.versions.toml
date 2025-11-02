@@ -11,7 +11,7 @@ navigation = "2.3.5"
 legacy = "1.0.0"
 
 playServicesMaps = "18.0.0"
-playServicesLocation = "18.0.0"
+playServicesLocation = "21.3.0"
 playServicesAuth = "19.2.0"
 
 runtimePermission = "1.1.2"

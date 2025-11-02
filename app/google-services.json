@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "551248859239",
+    "firebase_url": "https://damas-uz-default-rtdb.firebaseio.com",
     "project_id": "damas-uz",
     "storage_bucket": "damas-uz.firebasestorage.app"
   },
@@ -12,7 +13,16 @@
           "package_name": "com.example.damasuz"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "551248859239-7a0leepthgnapve3nsn6aji08koosbai.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.damasuz",
+            "certificate_hash": "a567f5067af8d3cb82eaae3782f298ad9a95d211"
+          }
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBHci1aCn85DWa-5PtPJEymFU84JIxpCgw"

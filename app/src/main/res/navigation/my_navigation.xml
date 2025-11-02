@@ -25,4 +25,19 @@
         android:name="com.example.damasuz.fragments.RegisterShopirFragment"
         android:label="fragment_register_shopir"
         tools:layout="@layout/fragment_register_shopir" />
+    <fragment
+        android:id="@+id/liniyaListShopirFragment"
+        android:name="com.example.damasuz.fragments.LiniyaListShopirFragment"
+        android:label="fragment_liniya_list_shopir"
+        tools:layout="@layout/fragment_liniya_list_shopir" />
+    <fragment
+        android:id="@+id/liniyaListYolovchiFragment"
+        android:name="com.example.damasuz.fragments.LiniyaListYolovchiFragment"
+        android:label="fragment_liniya_list_yolovchi"
+        tools:layout="@layout/fragment_liniya_list_yolovchi" />
+    <fragment
+        android:id="@+id/mapYolovchiFragment"
+        android:name="com.example.damasuz.fragments.mapYolovchiFragment"
+        android:label="fragment_map_yolovchi"
+        tools:layout="@layout/fragment_map_yolovchi" />
 </navigation>

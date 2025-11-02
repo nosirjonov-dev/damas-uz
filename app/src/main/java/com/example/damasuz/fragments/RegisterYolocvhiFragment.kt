@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
+import com.example.damasuz.R
 import com.example.damasuz.databinding.FragmentRegisterYolocvhiBinding
 import com.example.damasuz.models.Yolovchi
 import com.example.damasuz.utils.MySharedPrefarance
@@ -139,7 +140,7 @@ class RegisterYolocvhiFragment : Fragment() {
                     yolovchi.id = auth.uid
 
                     referenceYolovchi.child(yolovchi.id!!).setValue(yolovchi)
-                    findNavController().navigate(R.id.liniyaListYolovchiFragment, bundleOf("keyYolovchi" to yolovchi))
+                    findNavController().navigate(com.example.damasuz.R.id.liniyaListYolovchiFragment, bundleOf("keyYolovchi" to yolovchi))
 
                 } else {
                     //handle error

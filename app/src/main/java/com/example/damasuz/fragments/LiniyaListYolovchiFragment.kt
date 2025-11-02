@@ -10,79 +10,80 @@ import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.example.damasuz.R
 import com.example.damasuz.adapters.LiniyaAdapter
-import com.example.damasuz.databinding.FragmentLiniyaListShopirBinding
+import com.example.damasuz.databinding.FragmentLiniyaListYolovchiBinding
 import com.example.damasuz.models.Liniya
 import com.example.damasuz.models.SHopir
+import com.example.damasuz.models.Yolovchi
 import com.google.firebase.database.*
 
-class LiniyaListShopirFragment : Fragment() {
-    lateinit var binding: FragmentLiniyaListShopirBinding
-    lateinit var shopir: SHopir
+class LiniyaListYolovchiFragment : Fragment() {
+    lateinit var binding: FragmentLiniyaListYolovchiBinding
+
+    lateinit var liniyaList: ArrayList<Liniya>
+    lateinit var yolovchi: Yolovchi
 
     lateinit var firebaseDatabase: FirebaseDatabase
     lateinit var referenceLiniya: DatabaseReference
     lateinit var referenceShopir: DatabaseReference
-    lateinit var liniyaList:ArrayList<Liniya>
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentLiniyaListShopirBinding.inflate(layoutInflater)
+        binding = FragmentLiniyaListYolovchiBinding.inflate(layoutInflater)
 
-        shopir = arguments?.getSerializable("keyShopir") as SHopir
         firebaseDatabase = FirebaseDatabase.getInstance()
         referenceLiniya = firebaseDatabase.getReference("liniya")
         referenceShopir = firebaseDatabase.getReference("shopir")
 
-        referenceLiniya.addValueEventListener(object : ValueEventListener{
+        binding.progressLiniya.visibility = View.VISIBLE
+        yolovchi = arguments?.getSerializable("keyYolovchi") as Yolovchi
+
+        referenceLiniya.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                liniyaList = ArrayList()
+                liniyaList = ArrayList<Liniya>()
+
                 val children = snapshot.children
                 for (child in children) {
                     val value = child.getValue(Liniya::class.java)
-                    if (value!=null){
-                        if (value.id == shopir.liniyaId){
-                            liniyaList.add(value)
-                        }
+                    if (value != null) {
+                        liniyaList.add(value)
                     }
                 }
                 binding.progressLiniya.visibility = View.GONE
                 if (liniyaList.isEmpty()) {
                     binding.tvEmpty.visibility = View.VISIBLE
                 }
+
                 referenceShopir.addValueEventListener(object : ValueEventListener{
                     override fun onDataChange(snapshot: DataSnapshot) {
                         val shList = ArrayList<SHopir>()
                         val children1 = snapshot.children
-                        for (child in children1) {
-                            val value = child.getValue(SHopir::class.java)
+                        for (ch in children1) {
+                            val value = ch.getValue(SHopir::class.java)
                             if (value!=null){
                                 shList.add(value)
                             }
                         }
-
                         val liniyaAdapter = LiniyaAdapter(liniyaList, shList, object : LiniyaAdapter.OnCLick{
                             override fun rootCLick(liniya: Liniya) {
-                                findNavController().navigate(R.id.mapsFragment, bundleOf("keyLiniya" to liniya, "keyShopir" to shopir))
+                                findNavController().navigate(R.id.mapYolovchiFragment, bundleOf("keyYolovchi" to yolovchi, "keyLiniya" to liniya))
                             }
                         })
                         binding.rvLiniya.adapter = liniyaAdapter
-
                     }
 
                     override fun onCancelled(error: DatabaseError) {
 
                     }
                 })
-
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(context, "Iltimos internetga ulaning", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Iltimos internetga qayta ulaning...", Toast.LENGTH_SHORT).show()
             }
         })
-
         return binding.root
     }
 }
