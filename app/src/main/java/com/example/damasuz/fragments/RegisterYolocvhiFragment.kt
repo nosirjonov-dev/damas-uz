@@ -2,6 +2,7 @@ package com.example.damasuz.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -102,6 +103,7 @@ class RegisterYolocvhiFragment : Fragment() {
                 yolovchi = Yolovchi()
                 yolovchi.name = name
                 yolovchi.number = number
+                Toast.makeText(context, "Google Sign-In boshlanmoqda...", Toast.LENGTH_SHORT).show()
                 signIn()
             }else{
                 Toast.makeText(context, "Ma'lumotlarni to'liq va to'g'ri kiriting...", Toast.LENGTH_SHORT).show()
@@ -111,46 +113,63 @@ class RegisterYolocvhiFragment : Fragment() {
     }
 
     private fun signIn() {
-        val signInIntent = googleSignInClient.signInIntent
-        startActivityForResult(signInIntent, GOOGLE_SIGN_IN)
+        try {
+            val signInIntent = googleSignInClient.signInIntent
+            Toast.makeText(context, "signInIntent ishga tushdi", Toast.LENGTH_SHORT).show()
+            startActivityForResult(signInIntent, GOOGLE_SIGN_IN)
+        } catch (e: Exception) {
+            Toast.makeText(context, "signIn() xato: ${e.message}", Toast.LENGTH_LONG).show()
+            Log.e("GOOGLE_SIGNIN", "signIn() xato", e)
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == GOOGLE_SIGN_IN) {
+            Toast.makeText(context, "onActivityResult chaqirildi", Toast.LENGTH_SHORT).show()
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
                 val account = task.getResult(ApiException::class.java)!!
+                Toast.makeText(context, "Account olindi: ${account.email}", Toast.LENGTH_SHORT).show()
                 firebaseAuthWithGoogle(account.idToken!!)
             } catch (e: ApiException) {
-                //handle error
-                Toast.makeText(context, "Error\n${e.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    context,
+                    "ApiException: ${e.statusCode} ${e.message}",
+                    Toast.LENGTH_LONG
+                ).show()
+                Log.e("GOOGLE_SIGNIN", "ApiException", e)
             }
         }
     }
 
     private fun firebaseAuthWithGoogle(idToken: String) {
+        Toast.makeText(context, "Firebase bilan tasdiqlanmoqda...", Toast.LENGTH_SHORT).show()
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
-                    //handle success
-                    Toast.makeText(context, "Muvaffaqiyatli", Toast.LENGTH_SHORT).show()
-
+                    Toast.makeText(context, "Firebase auth muvaffaqiyatli ✅", Toast.LENGTH_SHORT).show()
                     yolovchi.id = auth.uid
-
                     referenceYolovchi.child(yolovchi.id!!).setValue(yolovchi)
-                    findNavController().navigate(com.example.damasuz.R.id.liniyaListYolovchiFragment, bundleOf("keyYolovchi" to yolovchi))
-
+                    findNavController().navigate(
+                        R.id.liniyaListYolovchiFragment,
+                        bundleOf("keyYolovchi" to yolovchi)
+                    )
                 } else {
-                    //handle error
-                    Toast.makeText(context, "Muvvaffaqiyatsiz!!!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        "Firebase auth muvaffaqiyatsiz ❌: ${task.exception?.message}",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    Log.e("FIREBASE_AUTH", "Error", task.exception)
                 }
             }
     }
 
     private fun getGSO(): GoogleSignInOptions {
-        return  GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        Toast.makeText(context, "GSO yaratildi", Toast.LENGTH_SHORT).show()
+        return GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
