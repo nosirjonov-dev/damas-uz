@@ -30,7 +30,7 @@
                 android:layout_weight="1"/>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="200dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintWidth_percent="0.7"
                 android:id="@+id/input_name"
@@ -47,7 +47,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="200dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/input_number"
                 >
