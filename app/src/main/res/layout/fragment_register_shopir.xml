@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_info_sms"
                 android:visibility="gone"
-                android:text="+998 99 1234567 raqamiga yuborilgan sms kodni kiriting va ilova sizni avtomatik ro'yhatga olishini kutib turing"
+                android:text="+998 95 049 57 47 raqamiga yuborilgan sms kodni kiriting va ilova sizni avtomatik ro'yhatga olishini kutib turing"
                 android:gravity="center"
                 android:layout_marginEnd="10dp"
                 android:layout_marginStart="10dp"
