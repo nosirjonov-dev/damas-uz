@@ -21,6 +21,10 @@
             "package_name": "com.example.damasuz",
             "certificate_hash": "a567f5067af8d3cb82eaae3782f298ad9a95d211"
           }
+        },
+        {
+          "client_id": "551248859239-n49a23176kuqhga0rorn0binrl6jk4r6.apps.googleusercontent.com",
+          "client_type": 3
         }
       ],
       "api_key": [
@@ -30,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "551248859239-n49a23176kuqhga0rorn0binrl6jk4r6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
