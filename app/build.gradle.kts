@@ -50,17 +50,19 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.legacy)
 
+    //  Libraries for navigation
     implementation (libs.androidx.navigation.fragment.ktx)
     implementation (libs.androidx.navigation.ui.ktx)
 
+//  Libraries for service
     implementation (libs.play.services.maps)
     implementation (libs.play.services.location)
     implementation (libs.play.services.auth)
 
-    // Firebase BOM (barcha Firebase kutubxonalarini avtomatik sinxron qiladi)
+    // Firebase BOM (automatically syncs all Firebase libraries)
     implementation(platform("com.google.firebase:firebase-bom:33.6.0"))
 
-    // Firebase kutubxonalari — endi versiyasiz yoziladi
+    // Firebase libraries — now written without versioning
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-database")
     implementation("com.google.firebase:firebase-firestore")
